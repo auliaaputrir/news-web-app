@@ -5,12 +5,7 @@ import Indonesia from "../components/Indonesia"
 export default function Index() {
     return (
         <>
-        <div>
-            <Header />
-
-        </div>
         <Indonesia/>
-        <Footer />
         </>
     )
 }

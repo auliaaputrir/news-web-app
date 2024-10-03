@@ -1,7 +1,8 @@
 import { Today } from "./FormatDate"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
+import { NavLink } from 'react-router-dom';
+import Search from "./Search";
 export default function Header() {
     return (
         <div className="relative h-40 m-0 ">
@@ -9,13 +10,7 @@ export default function Header() {
                 <div className="flex justify-between w-full px-0">
                     <div className="relative pl-4">
                         <label htmlFor="Search" className="sr-only"> Search </label>
-
-                        <input
-                            type="text"
-                            id="Search"
-                            placeholder="Search for..."
-                            className="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
-                        />
+                        <Search/>
 
                         <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
                             <button type="button" className="text-gray-600 hover:text-gray-700">
@@ -50,14 +45,32 @@ export default function Header() {
                 <nav className="">
                     <ul className="flex space-x-4">
                         <li className="max-w-24"><Today /></li>
-                        <li><a href="#" className=" border-b border-transparent hover:border-b-2 hover:border-blue-500 transition-all duration-300">Indonesia</a></li>
-                        <li><a href="#" className=" border-b border-transparent hover:border-b-2 hover:border-blue-500 transition-all duration-300">Programming</a></li>
-                        <li><a href="#" className=" border-b border-transparent hover:border-b-2 hover:border-blue-500 transition-all duration-300">Indonesia</a></li>
-                        <li><a href="#" className=" border-b border-transparent hover:border-b-2 hover:border-blue-500 transition-all duration-300">Indonesia</a></li>
+                        <li>
+                            <NavLink
+                                to="/"
+                                end
+                                className={({ isActive }) =>
+                                    `inline-block border-b-2 transition-all duration-300 ${isActive ? 'border-black pb-2' : 'border-transparent hover:border-black pb-2'}`
+                                }
+                            >
+                                Indonesia
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/programming"
+                                className={({ isActive }) =>
+                                    `inline-block border-b-2 transition-all duration-300 ${isActive ? 'border-black pb-2' : 'border-transparent hover:border-black pb-2'}`
+                                }
+                            >
+                                Programming
+                            </NavLink>
+                        </li>
                     </ul>
+
                 </nav>
             </header>
-        </div>
+        </div >
 
     )
 }

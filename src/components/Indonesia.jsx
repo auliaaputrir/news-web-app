@@ -1,9 +1,9 @@
-// src/components/LatestNews.jsx
+
 import { fetchIndonesia } from "../api/indonesiaApi";
 import IndonesiaItem from "./CardItem";
 import { useState, useEffect } from "react";
 
-export default function LatestNews() {
+export default function Indonesia() {
   const [indonesiaNews, setIndonesiaNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // State untuk loading
   const [error, setError] = useState(null); // State untuk error

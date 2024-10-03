@@ -1,16 +1,14 @@
 import { useState } from 'react'
 
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import './App.css'
-import Pages from "./Pages/Index"
-import Programming from './Pages/ProgrammingPage'
+import { RouterProvider } from 'react-router-dom'
+import router from './route/route'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Programming />
+      <RouterProvider router={router} />
     </>
   )
 }

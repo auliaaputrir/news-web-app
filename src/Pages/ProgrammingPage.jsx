@@ -5,12 +5,8 @@ import Programming from "../components/Programming"
 export default function ProgrammingPage() {
     return (
         <>
-        <div>
-            <Header />
-
-        </div>
+        
         <Programming/>
-        <Footer />
         </>
     )
 }

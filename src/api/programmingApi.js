@@ -15,7 +15,7 @@ export async function fetchProgramming() {
 
             }
         })
-        data = res.data.response.docs;
+        data = res.data.response.docs ? res.data.response.docs : [] ;
 
     }
     catch (err) {

@@ -1,7 +1,5 @@
-import axios from 'axios'
-
-
-export async function fetchIndonesia() {
+import axios from "axios";
+export async function searchNews(q) {
     const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
     const baseUrl = import.meta.env.VITE_CURRENCY_BASE_URL;
     let data;
@@ -10,12 +8,12 @@ export async function fetchIndonesia() {
             method: "GET",
             url: `${baseUrl}/search/v2/articlesearch.json`,
             params: {
-                q: 'indonesia',
+                q: q,
                 'api-key': `${apiKey}`
 
             }
         })
-        data = res.data.response.docs ;
+        data = res.data.response.docs ? res.data.response.docs : [] ;
 
     }
     catch (err) {
@@ -24,3 +22,5 @@ export async function fetchIndonesia() {
     }
     return data;
 }
+
+export default searchNews
