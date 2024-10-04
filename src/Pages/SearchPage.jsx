@@ -1,6 +1,6 @@
 // src/components/LatestNews.jsx
-import { searchNews } from "../api/api";
-import IndonesiaItem from "../components/CardItem";
+// import { searchNews } from "../api/api";
+import CardItem from "../components/CardItem";
 import { useState, useEffect } from "react";
 
 export default function SearchNews() {
@@ -36,7 +36,7 @@ export default function SearchNews() {
           <p className='text-2xl text-red-500'>Failed to load news.</p>
         ) : searchNews.length > 0 ? (
           searchNews.map((item) => (
-            <IndonesiaItem key={item._id} news={item} />
+            <CardItem key={item._id} news={item} />
           ))
         ) : (
           <p className='text-2xl text-white'>No news available.</p>

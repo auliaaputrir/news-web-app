@@ -46,7 +46,7 @@ export async function fetchProgramming() {
     }
     return data;
 }
-export async function searchNews(q) {
+export async function fetchNews(q) {
     try {
         const res= await axios({
             method: "GET",
@@ -58,7 +58,8 @@ export async function searchNews(q) {
             }
         })
         data = res.data.response.docs ? res.data.response.docs : [] ;
-
+        console.log(q);
+        
     }
     catch (err) {
         console.log(err);

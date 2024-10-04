@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { searchNews } from '../api/api'
+import { fetchNews } from '../api/api'
 export default function Search() {
     const [key, setKey] = useState('')
     async function search (q){
         if (q.length > 2){       
-            const query = await searchNews(q);
+            const query = await fetchNews(q);
             console.log(query);
         }
         
