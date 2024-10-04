@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import search, { searchNews } from '../api/search'
+import { searchNews } from '../api/api'
 export default function Search() {
     const [key, setKey] = useState('')
     async function search (q){
@@ -10,7 +10,6 @@ export default function Search() {
         
     }
     return (
-
         <input
             type="text"
             id="Search"

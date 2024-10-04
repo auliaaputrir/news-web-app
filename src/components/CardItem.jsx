@@ -3,7 +3,6 @@ import ButtonSave from "./ButtonSave";
 export default function CardItem({ news }) {
     return (
         <>
-
             <div className="container mx-auto max-w-72 ">
 
                 <div className="flex flex-col overflow-hidden rounded-lg border border-gray-100 bg-white hover:shadow-xl">

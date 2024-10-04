@@ -1,5 +1,5 @@
 // src/components/LatestNews.jsx
-import { searchNews } from "../api/search";
+import { searchNews } from "../api/api";
 import IndonesiaItem from "../components/CardItem";
 import { useState, useEffect } from "react";
 
