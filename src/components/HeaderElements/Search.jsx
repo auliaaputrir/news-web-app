@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { fetchNews } from '../api/api'
+import { fetchNews } from '../../api/api'
+import { Routes, Route, useParams} from 'react-router-dom'
 export default function Search() {
     const [key, setKey] = useState('')
     async function search (q){

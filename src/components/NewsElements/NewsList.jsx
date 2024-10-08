@@ -1,17 +1,16 @@
 // src/components/LatestNews.jsx
-import { fetchNews } from "../api/api";
-import CardItem from "../components/CardItem"
+import { fetchNews } from "../../api/api";
+import CardItem from "./CardItem"
 import { useState, useEffect } from "react";
-import Loading from "../components/LoadMessage/Loading";
-import Error from "../components/LoadMessage/Error";
-import NoNews from "../components/LoadMessage/NoNews";
-import SectionTitle from "../components/SectionTitle";
+import Loading from "../LoadMessage/Loading";
+import Error from "../LoadMessage/Error";
+import NoNews from "../LoadMessage/NoNews";
+import SectionTitle from "./SectionTitle";
+import TopNews from "./TopNews";
 
 export default function NewsList(props) {
-    const {query} = props
-    
-    
-    
+    const { query } = props
+
     const [newsList, setNewsList] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // State untuk loading
     const [error, setError] = useState(null); // State untuk error
@@ -37,6 +36,7 @@ export default function NewsList(props) {
 
     return (
         <>
+            
             <SectionTitle>{query}</SectionTitle>
             <div className="grid grid-cols-4 gap-4">
                 {isLoading ? (
