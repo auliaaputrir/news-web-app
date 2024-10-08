@@ -1,16 +1,13 @@
 /* eslint-disable react/prop-types */
-import ContinueReading from "./ContinueReadingLink"
+import ContinueReading from "../Elements/Anchor/ContinueReading"
 
 export default function TopNews(props) {
     const { children } = props
     return (
-        <div className="container mt-0 mx-auto">
-            <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-                    {children}
-                </div>
-            </div>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-8">
+            {children}
         </div>
+
     )
 }
 
@@ -28,18 +25,18 @@ export function Image(props) {
 }
 
 export function Body(props) {
-    const { headline, children } = props
+    const { headline, children,href } = props
     return (
         <div className="lg:py-24">
             <div className="w-24 h-10 pt-2 pl-3 bg-red-600 text-white ">
                 <span className="font-bold">Top News</span>
-                
+
             </div>
             <h1 className="text-3xl font-bold sm:text-4xl">{headline}</h1>
             <p className="mt-4 text-gray-600">
                 {children}
             </p>
-            <ContinueReading />
+            <ContinueReading href={href}/>
         </div>
     )
 }

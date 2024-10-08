@@ -3,6 +3,7 @@ import Search from "./Search";
 import NavItem from "./NavItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import Button from "../Elements/Button";
 
 export default function Header() {
     return (
@@ -25,7 +26,7 @@ export default function Header() {
                         <img className="" src="./src/assets/logo-2.png" alt="logo" />
                     </div>
                     <div className=" flex gap-x-2">
-                        <a type="button" className="text-white pointer bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium  text-sm px-5 py-2.5 :bg-gray-800">Saved</a>
+                        <Button>Saved</Button>
                     </div>
                 </div>
                 <hr className="border-t-2 border-gray-200 w-27 mx-auto my-4" />

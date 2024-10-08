@@ -8,7 +8,7 @@ export default function MainLayout() {
                 <div className="relative h-40 m-0 ">
                     <Header />
                 </div>
-                <div className="mx-auto lg:px-8 ">
+                <div className="mx-auto ">
                     <Outlet />               
                 </div>
                 <Footer />
