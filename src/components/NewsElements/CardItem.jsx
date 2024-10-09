@@ -8,7 +8,7 @@ export default function Card(props) {
     return (
         <>
             <div className="container mx-auto max-w-96 ">
-                <div className="flex flex-col overflow-hidden rounded-lg border border-gray-100 bg-white h-full ">
+                <div className="flex flex-col overflow-hidden rounded-lg border-2 border-gray-200 bg-white h-full  ">
                     {children}
                 </div>
             </div>
@@ -40,7 +40,7 @@ export function Image(props) {
     )
 }
 export function Body(props) {
-    const { headline, children, href } = props
+    const { headline, children, href, news } = props
     return (
         <div className="p-4 sm:p-6 relative">
             <a href="#">
@@ -52,11 +52,12 @@ export function Body(props) {
             <p className="mt-2 text-sm text-gray-500 h-1/2">
                 {children}
             </p>
-            <div className="flex flex-row max-w-full">
+            <div className="flex flex-row ">
                 <ContinueReading href={href} />
             </div>
-            <div className="absolute bottom-0 right-0 mr-4 mb-4">
-            <BtnSave />
+            <div className="absolute bottom-0 right-0 mr-4 mb-8">
+            <BtnSave news={news} />
+            {console.log(news)}
             </div>
         </div>
     )

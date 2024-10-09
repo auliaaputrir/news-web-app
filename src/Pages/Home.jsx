@@ -48,7 +48,7 @@ export default function Indonesia() {
         <div className="mt-14 w-full grid grid-cols-3 gap-2">
 
           {news.map((item) => (
-            <CardItem>
+            <CardItem key={item.id}>
               <CardItem.Image
                 alt={`news-image$-${item.headline}`}
                 src={item.img}
@@ -56,11 +56,13 @@ export default function Indonesia() {
               <CardItem.Body
                 headline={item.headline}
                 href={item.url}
+                news={item}
               >
                 {item.abstract}
 
               </CardItem.Body>
             </CardItem>
+            
           ))}
         </div>
 

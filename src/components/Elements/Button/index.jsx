@@ -1,12 +1,12 @@
 export default function Button (props){
     const { children, 
-            clasname='bg-black text-white h-10 px-6 font-bold rounded-md',
-            onClick
+            classname='bg-black text-white  rounded-md',
+            onClick=()=>{}
             } = props
     return (
         <button
             type="button"
-            className={clasname}
+            className={`h-10 px-4 font-bold ${classname}`}
             onClick={onClick}
         >
             {children}
