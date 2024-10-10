@@ -14,12 +14,20 @@ export default function TopNews(props) {
 export function Image(props) {
     const { src, alt = 'news image' } = props
     return (
-        <div className="h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full">
-            <img
-                alt={alt}
-                src={src}
-                className="inset-0 h-full w-full object-cover"
-            />
+        <div className="h-64 overflow-hidden rounded-lg sm:h-80 lg:min-h-96">
+            {src ? (
+                 <img
+                 alt={alt}
+                 src={src}
+                 className="inset-0 h-full w-full object-cover"
+             />
+
+            ) : (
+                <div className="inset-0 h-full w-full bg-gray-200 flex items-center justify-center">
+                    No Image Available
+                </div>
+            )}
+           
         </div>
     )
 }

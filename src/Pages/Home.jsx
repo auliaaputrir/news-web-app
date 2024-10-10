@@ -6,6 +6,7 @@ import { fetchIndonesia } from "../services/api";
 
 export default function Indonesia() {
     const [news, setNews] = useState([]);
+    const [firstNews, setFirstNews] = useState(null); // State for the first news item
     const [savedNews, setSavedNews] = useState([]);
     const [isSaved, setIsSaved] = useState({});
     const [error, setError] = useState(null); // Menambahkan state error
@@ -16,8 +17,10 @@ export default function Indonesia() {
         const getNewsList = async () => {
             try {
                 const newsArray = await fetchIndonesia();
-                console.log("News Array:", newsArray); // Memeriksa struktur data
                 setNews(newsArray);
+                if (newsArray.length > 0) {
+                    setFirstNews(newsArray[0]); 
+                }
             } catch (err) {
                 console.error("Error fetching news:", err);
                 setError(err);
@@ -84,23 +87,29 @@ export default function Indonesia() {
     return (
         <div className="container mt-0 pb-8 mx-auto">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
-                <TopNews>
-                    <TopNews.Image
-                        alt='news-image'
-                        src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                    />
-                    <TopNews.Body
-                        headline='Grow your audience'
-                        href="#" // Tambahkan href yang sesuai jika perlu
-                    >
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora ea delectus alias molestiae quas voluptatem reiciendis est laboriosam quisquam. Vitae consequatur omnis amet laborum unde dolorum libero error nemo id!
-                    </TopNews.Body>
-                </TopNews>
+                {firstNews && (
+                    <TopNews>
+                        <TopNews.Image
+                            alt='news-image'
+                            src={
+                                firstNews.multimedia && firstNews.multimedia.length > 0 
+                                ? `https://www.nytimes.com/${firstNews.multimedia[0].url}`
+                                : null 
+                            }
+                        />
+                        <TopNews.Body
+                            headline={firstNews.headline?.main || 'No Title Available'}
+                            href={firstNews.web_url} // Assuming this is the link to the article
+                        >
+                            {firstNews.abstract || 'No Description Available'}
+                        </TopNews.Body>
+                    </TopNews>
+                )}
             </div>
 
             {/* CardItem Section */}
             <div className="mt-14 w-full grid grid-cols-3 gap-2">
-                {news.map((item) => (
+                {news.slice(1).map((item) => ( // Start mapping from index 1
                     <CardItem key={item._id}>
                         <CardItem.Image
                             alt={`news-image-${item.headline?.main || 'default-headline'}`}
