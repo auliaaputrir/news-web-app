@@ -1,5 +1,5 @@
 // src/components/LatestNews.jsx
-import { fetchProgramming } from "../api/api";
+import { fetchProgramming } from "../services/api";
 import CardItem from "../components/NewsElements/CardItem"
 import { useState, useEffect } from "react";
 import Loading from "../components/LoadMessage/Loading";

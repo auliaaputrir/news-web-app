@@ -1,56 +1,52 @@
-import ButtonSave from "./ButtonSave";
-import ContinueReading from "../Elements/Anchor/ContinueReading";
+// CardItem.jsx
+import React from 'react';
 import Button from "../Elements/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark as solidBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons';
-export default function Card(props) {
-    const { children } = props
-    return (
-        <>
-            <div className="container mx-auto max-w-96 ">
-                <div className="flex flex-col overflow-hidden rounded-lg border-2 border-gray-200 bg-white h-full  ">
-                    {children}
-                </div>
-            </div>
-        </>
+import ContinueReading from "../Elements/Anchor/ContinueReading";
 
-    )
+export default function Card(props) {
+    const { children } = props;
+    return (
+        <div className="container mx-auto max-w-96 my-4 ">
+            <div className="flex flex-col rounded-lg border-2 border-gray-200 bg-white h-full">
+                {children}
+            </div>
+        </div>
+    );
 }
 
 export function Image(props) {
-    const { alt, src } = props
+    const { alt, src } = props;
     return (
         <>
-            {/* {
-                news.multimedia && news.multimedia.length > 0 && news.multimedia[0].url ? ( */}
-            <img
-                alt={alt}
-                src={src}
-                className="h-56 w-full object-cover"
-            />
-            {/* ) : ( */}
-            {/* <div className="h-56 w-full bg-gray-200 flex items-center justify-center">
-                        No Image Available
-                    </div> */}
-            {/* )
-            } */}
-
+            {src ? (
+                <img
+                    alt={alt}
+                    src={src}
+                    className="h-56 w-full object-cover"
+                />
+            ) : (
+                <div className="h-56 w-full bg-gray-200 flex items-center justify-center">
+                    No Image Available
+                </div>
+            )}
         </>
-
-    )
+    );
 }
+
 export function Body(props) {
-    const { headline, children, href, id, handleSave, isSaved } = props
+    const { headline, children, href, id, handleSave, isSaved } = props;
     return (
         <div className="p-4 sm:p-6 relative">
-            <a href="#">
+            <a href={href} target="_blank" rel="noopener noreferrer">
                 <h3 className="text-lg font-medium text-gray-900">
                     {headline}
                 </h3>
             </a>
 
-            <p className="mt-2 text-sm text-gray-500 h-1/2">
+            <p className="mt-2 text-sm text-gray-500 min-h-24 ">
                 {children}
             </p>
             <div className="flex flex-row ">
@@ -68,9 +64,8 @@ export function Body(props) {
                 </Button>
             </div>
         </div>
-    )
-
+    );
 }
 
-Card.Image = Image
-Card.Body = Body
+Card.Image = Image;
+Card.Body = Body;
