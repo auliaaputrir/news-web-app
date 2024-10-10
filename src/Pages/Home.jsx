@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import CardItem from "../components/NewsElements/CardItem"; // Pastikan path sesuai
 import TopNews from "../components/NewsElements/TopNews";
 import { fetchIndonesia } from "../services/api";
+import useSaved from '../hooks/useSaved'
 
 export default function Indonesia() {
     const [news, setNews] = useState([]);
     const [firstNews, setFirstNews] = useState(null); // State for the first news item
-    const [savedNews, setSavedNews] = useState([]);
-    const [isSaved, setIsSaved] = useState({});
+    const {savedNews, isSaved, handleSave} = useSaved()
     const [error, setError] = useState(null); // Menambahkan state error
     const [isLoading, setIsLoading] = useState(true); // Menambahkan state isLoading
 
@@ -32,48 +32,7 @@ export default function Indonesia() {
         getNewsList();
     }, []);
 
-    // Load saved-news dari localStorage saat komponen pertama kali di-mount
-    useEffect(() => {
-        const storedSavedNews = JSON.parse(localStorage.getItem('saved-news')) || [];
-        setSavedNews(storedSavedNews);
-
-        // Set isSaved berdasarkan apa yang ada di localStorage
-        const initialSavedState = {};
-        storedSavedNews.forEach(item => {
-            initialSavedState[item._id] = true; // Asumsi bahwa item memiliki _id
-        });
-        setIsSaved(initialSavedState);
-    }, []);
-
-    // Simpan `savedNews` ke localStorage setiap kali `savedNews` berubah
-    useEffect(() => {
-        localStorage.setItem('saved-news', JSON.stringify(savedNews));
-    }, [savedNews]);
-
-    // Fungsi handleSave
-    function handleSave(id) {
-        // Temukan item news yang id-nya sesuai dengan parameter id
-        const data = news.find((item) => item._id === id);
-
-        // Jika item sudah ada di savedNews, hapus
-        if (savedNews.find(item => item._id === id)) {
-            const updatedSavedNews = savedNews.filter((item) => item._id !== id);
-            setSavedNews(updatedSavedNews);
-
-            setIsSaved(prevState => ({
-                ...prevState,
-                [id]: false // Set jadi tidak tersimpan (unsaved) untuk id yang spesifik
-            }));
-        } else {
-            // Jika belum ada, tambahkan item ke savedNews
-            setSavedNews([...savedNews, data]);
-
-            setIsSaved(prevState => ({
-                ...prevState,
-                [id]: true // Set jadi tersimpan (saved) untuk id yang spesifik
-            }));
-        }
-    }
+    
 
     // Render loading, error, atau konten
     if (isLoading) {
@@ -124,7 +83,7 @@ export default function Indonesia() {
                             href={item.web_url}
                             id={item._id}
                             handleSave={handleSave}
-                            isSaved={isSaved}
+                            isSaved={item._id}
                         >
                             {item.abstract || 'No Description Available'}
                         </CardItem.Body>
