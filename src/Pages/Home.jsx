@@ -1,6 +1,7 @@
 // src/pages/Indonesia.jsx
 import CardItem from "../components/NewsElements/CardItem";
 import TopNews from "../components/NewsElements/TopNews";
+import { useState } from "react";
 
 const news = [
   {
@@ -26,6 +27,42 @@ const news = [
   },
 ]
 export default function Indonesia() {
+  const [isSaved, setIsSaved] = useState(false);
+  
+  function handleSave(id) {
+    // Ambil data saved-news dari localStorage
+    let savedNews = JSON.parse(localStorage.getItem('saved-news')) || [];
+
+    // Temukan item news yang id-nya sesuai dengan parameter id
+    const data = news.find((item) => item.id === id);
+
+    if (!data) {
+        console.error('Item tidak ditemukan');
+        return;
+    }
+
+    // Jika item sudah ada di savedNews, hapus
+    if (savedNews.find(item => item.id === id)) {
+        savedNews = savedNews.filter((item) => item.id !== id);
+        setIsSaved(prevState => ({
+            ...prevState,
+            [id]: false // Set jadi tidak tersimpan (unsaved) untuk id yang spesifik
+        }));
+    } else {
+        // Jika belum ada, tambahkan item ke savedNews
+        savedNews.push(data);
+        setIsSaved(prevState => ({
+            ...prevState,
+            [id]: true // Set jadi tersimpan (saved) untuk id yang spesifik
+        }));
+    }
+
+    // Simpan kembali daftar savedNews yang diperbarui ke localStorage
+    localStorage.setItem('saved-news', JSON.stringify(savedNews));
+}
+
+
+
   return (
     <>
       {/* TopNews Section */}
@@ -47,7 +84,7 @@ export default function Indonesia() {
 
         <div className="mt-14 w-full grid grid-cols-3 gap-2">
 
-          {news.map((item) => (
+          {news.map((item, index) => (
             <CardItem key={item.id}>
               <CardItem.Image
                 alt={`news-image$-${item.headline}`}
@@ -56,13 +93,14 @@ export default function Indonesia() {
               <CardItem.Body
                 headline={item.headline}
                 href={item.url}
-                news={item}
+                id={item.id}
+                handleSave={handleSave}
+                isSaved={isSaved}
               >
                 {item.abstract}
 
               </CardItem.Body>
-            </CardItem>
-            
+            </CardItem>      
           ))}
         </div>
 

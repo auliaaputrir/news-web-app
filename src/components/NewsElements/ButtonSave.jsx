@@ -1,34 +1,49 @@
 // src/components/BtnSave.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark as solidBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Elements/Button';
+import { faNetworkWired } from '@fortawesome/free-solid-svg-icons/faNetworkWired';
 
 export default function BtnSave(props) {
-    const { news } = props
-    const [isSaved, setIsSaved] = useState(false);
+    const { news } = props; // news adalah objek satuan berita dengan id
+    const [savedNews, setSavedNews] = useState(() => {
+        const storedNews = localStorage.getItem('news-saved');
+        return storedNews ? JSON.parse(storedNews) : [];
+    });
 
+    // Update state dari local storage saat komponen dimuat
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem('news-saved') || '[]');
+        setSavedNews(saved);
+    }, []);
 
+    // Simpan ke local storage setiap kali savedNews berubah
+    useEffect(() => {
+        localStorage.setItem('news-saved', JSON.stringify(savedNews));
+    }, [savedNews]);
+
+    // Mengecek apakah item sudah disimpan
     function handleSave() {
-        const data = news.id
-
-        if (localStorage.getItem(data)) {
-            // Jika sudah ada di localStorage, berarti sedang tersimpan
-            setIsSaved(false); // Membuat unsaved
-            localStorage.removeItem(data); // Hapus dari localStorage
+        const isAlreadySaved = savedNews.some(item => item.id === news.id); // Cek apakah berita sudah disimpan
+        
+        if (!isAlreadySaved) {
+            // Menambahkan berita ke savedNews
+            setSavedNews(prev => [...prev, news]); // Menambahkan berita ke dalam daftar savedNews
         } else {
-            // Jika belum ada, berarti akan disimpan
-            setIsSaved(true); // Membuat saved
-            localStorage.setItem(data, JSON.stringify(news)); // Simpan ke localStorage
+            // Menghapus hanya item yang diklik
+            setSavedNews(prev => prev.filter(item => item.id !== news.id)); // Menghapus item yang diklik
         }
     }
 
     return (
-        <Button onClick={handleSave} classname='bg-black text-white rounded-lg mr-4'>
-            <span className="">
-                <FontAwesomeIcon icon={isSaved ? solidBookmark : regularBookmark} />
-            </span>
-        </Button>
+        <div>
+            <Button onClick={handleSave} className='bg-black text-white rounded-lg mr-4'>
+                <span>
+                    <FontAwesomeIcon icon={savedNews.some(item => item.id === news.id) ? solidBookmark : regularBookmark} />
+                </span>
+            </Button>
+        </div>
     );
 }

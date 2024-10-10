@@ -1,8 +1,9 @@
 import ButtonSave from "./ButtonSave";
 import ContinueReading from "../Elements/Anchor/ContinueReading";
 import Button from "../Elements/Button";
-import BtnSave from "./ButtonSave";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark as solidBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons';
 export default function Card(props) {
     const { children } = props
     return (
@@ -40,7 +41,7 @@ export function Image(props) {
     )
 }
 export function Body(props) {
-    const { headline, children, href, news } = props
+    const { headline, children, href, id, handleSave, isSaved } = props
     return (
         <div className="p-4 sm:p-6 relative">
             <a href="#">
@@ -56,8 +57,15 @@ export function Body(props) {
                 <ContinueReading href={href} />
             </div>
             <div className="absolute bottom-0 right-0 mr-4 mb-8">
-            <BtnSave news={news} />
-            {console.log(news)}
+                <Button
+                    id={id}
+                    onClick={() => handleSave(id)}
+                    className="bg-black text-white rounded-lg mr-4"
+                >
+                    <span>
+                        <FontAwesomeIcon icon={isSaved[id] ? solidBookmark : regularBookmark} />
+                    </span>
+                </Button>
             </div>
         </div>
     )
