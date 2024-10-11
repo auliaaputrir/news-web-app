@@ -12,11 +12,10 @@ export default function Header() {
                     <div className="relative pl-4">
                         <label htmlFor="Search" className="sr-only"> Search </label>
                         <Search />
-
                         
                     </div>
                     <div className="max-w-52 mx-4" >
-                        <img className="" src="./src/assets/logo-2.png" alt="logo" />
+                        <img className="" src="public/logo-2.png" alt="logo" />
                     </div>
                     <div className=" flex gap-x-2">
                     <NavItem to='/saved' classBorder='' borderColor=''><Button>Saved</Button></NavItem>
