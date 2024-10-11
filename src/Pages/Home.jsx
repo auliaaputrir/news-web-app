@@ -1,14 +1,13 @@
-// Indonesia.jsx
 import React, { useEffect, useState } from "react";
-import CardItem from "../components/NewsElements/CardItem"; // Pastikan path sesuai
+import CardItem from "../components/NewsElements/CardItem"; 
 import TopNews from "../components/NewsElements/TopNews";
 import { fetchIndonesia } from "../services/api";
 import useSaved from '../hooks/useSaved'
-
+import SectionTitle from "../components/NewsElements/SectionTitle";
 export default function Indonesia() {
     const [news, setNews] = useState([]);
     const [firstNews, setFirstNews] = useState(null); // State for the first news item
-    const {savedNews, isSaved, handleSave} = useSaved()
+    const { isSaved, handleSave } = useSaved()
     const [error, setError] = useState(null); // Menambahkan state error
     const [isLoading, setIsLoading] = useState(true); // Menambahkan state isLoading
 
@@ -19,7 +18,7 @@ export default function Indonesia() {
                 const newsArray = await fetchIndonesia();
                 setNews(newsArray);
                 if (newsArray.length > 0) {
-                    setFirstNews(newsArray[0]); 
+                    setFirstNews(newsArray[0]);
                 }
             } catch (err) {
                 console.error("Error fetching news:", err);
@@ -32,7 +31,7 @@ export default function Indonesia() {
         getNewsList();
     }, []);
 
-    
+
 
     // Render loading, error, atau konten
     if (isLoading) {
@@ -44,21 +43,23 @@ export default function Indonesia() {
     }
 
     return (
-        <div className="container mt-0 pb-8 mx-auto">
+        <div>
+            <SectionTitle>Indonesia</SectionTitle>
+            <div className="container mt-10 pb-8 mx-auto">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
                 {firstNews && (
                     <TopNews>
                         <TopNews.Image
                             alt='news-image'
                             src={
-                                firstNews.multimedia && firstNews.multimedia.length > 0 
-                                ? `https://www.nytimes.com/${firstNews.multimedia[0].url}`
-                                : null 
+                                firstNews.multimedia && firstNews.multimedia.length > 0
+                                    ? `https://www.nytimes.com/${firstNews.multimedia[0].url}`
+                                    : null
                             }
                         />
                         <TopNews.Body
                             headline={firstNews.headline?.main || 'No Title Available'}
-                            href={firstNews.web_url} // Assuming this is the link to the article
+                            href={firstNews.web_url}
                         >
                             {firstNews.abstract || 'No Description Available'}
                         </TopNews.Body>
@@ -79,11 +80,12 @@ export default function Indonesia() {
                             }
                         />
                         <CardItem.Body
-                            headline={item.headline?.main || 'No Title Available'} // Mengirimkan string, bukan objek
+                            key={item._id}
+                            headline={item.headline?.main || 'No Title Available'}
                             href={item.web_url}
                             id={item._id}
-                            handleSave={handleSave}
-                            isSaved={item._id}
+                            handleSave={() => handleSave(item)} // Mengirimkan seluruh objek `item`
+                            isSaved={isSaved(item._id)} // Mengirimkan status boolean
                         >
                             {item.abstract || 'No Description Available'}
                         </CardItem.Body>
@@ -91,5 +93,7 @@ export default function Indonesia() {
                 ))}
             </div>
         </div>
+        </div>
+       
     );
 }

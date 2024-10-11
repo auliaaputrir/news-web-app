@@ -55,11 +55,11 @@ export function Body(props) {
             <div className="absolute bottom-0 right-0 border-2 mr-4 mb-8">
                 <Button
                     id={id}
-                    onClick={() => handleSave(id)}
+                    onClick={handleSave} // Menggunakan handleSave yang dipass dari parent
                     className="bg-black text-white rounded-lg mr-4"
                 >
                     <span>
-                        <FontAwesomeIcon icon={isSaved[id] ? solidBookmark : regularBookmark} />
+                        <FontAwesomeIcon icon={isSaved ? solidBookmark : regularBookmark} />
                     </span>
                 </Button>
             </div>

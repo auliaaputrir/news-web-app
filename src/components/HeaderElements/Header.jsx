@@ -1,9 +1,8 @@
 import { Today } from "./FormatDate"
 import Search from "./Search";
 import NavItem from "./NavItem";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import Button from "../Elements/Button";
+
 
 export default function Header() {
     return (
@@ -14,19 +13,14 @@ export default function Header() {
                         <label htmlFor="Search" className="sr-only"> Search </label>
                         <Search />
 
-                        <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
-                            <button type="button" className="text-gray-600 hover:text-gray-700">
-                                <span className="sr-only">Search</span>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                             
-                            </button>
-                        </span>
+                        
                     </div>
                     <div className="max-w-52 mx-4" >
                         <img className="" src="./src/assets/logo-2.png" alt="logo" />
                     </div>
                     <div className=" flex gap-x-2">
-                        <Button>Saved</Button>
+                    <NavItem to='/saved' classBorder='' borderColor=''><Button>Saved</Button></NavItem>
+    
                     </div>
                 </div>
                 <hr className="border-t-2 border-gray-200 w-27 mx-auto my-4" />
@@ -34,7 +28,7 @@ export default function Header() {
                     <ul className="flex space-x-4">
                         <li className="max-w-24"><Today /></li>
                         <li>
-                            <NavItem to='/'> Indonesia </NavItem>
+                            <NavItem to='/' > Indonesia </NavItem>
                         </li>
                         <li>
                             <NavItem to='/programming'> Programming </NavItem>
