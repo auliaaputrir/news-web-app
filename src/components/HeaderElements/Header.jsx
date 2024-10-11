@@ -15,7 +15,7 @@ export default function Header() {
                         
                     </div>
                     <div className="max-w-52 mx-4" >
-                        <img className="" src="public/logo-2.png" alt="logo" />
+                        <img className="" src="./public/logo-2.png" alt="logo" />
                     </div>
                     <div className=" flex gap-x-2">
                     <NavItem to='/saved' classBorder='' borderColor=''><Button>Saved</Button></NavItem>

@@ -12,7 +12,7 @@ export default function ErrorPage() {
             <Header />
 
             <div className="flex justify-center min-h-screen items-center flex-col">
-                <img className='max-w-16' src="public/error-logo.png" alt="" />
+                <img className='max-w-16' src="./public/error-logo.png" alt="" />
                 <h1 className="text-3xl font-bold">Oops!</h1>
                 <p className="my-2 text-xl">Sorry, this page isn't available</p>
                 <p className="text-lg">The page you're looking for is {error.statusText || error.message} </p>
