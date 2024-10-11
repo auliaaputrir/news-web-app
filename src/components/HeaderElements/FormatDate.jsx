@@ -1,6 +1,6 @@
 const today = new Date();
 
-export function formatDate(date) {
+export function formatDateHeader(date) {
   // Ambil nama hari dan tanggal
   const weekdayOptions = { weekday: 'long' };
   const dayOptions = { day: 'numeric' };
@@ -12,11 +12,11 @@ export function formatDate(date) {
   const month = date.toLocaleString('en-US', { month: 'short' }); // Bulan singkat (Sep)
   const year = date.getFullYear(); // Mendapatkan tahun (2024)
 
-  // Gabungkan sesuai urutan yang diinginkan: Sunday, 29 Sep 2024
   return `${weekday}, ${day} ${month} ${year}`;
 }
 
 
+
 export function Today(){
-  return (<p className="text-md ms-3 mt-0">{formatDate(today)}</p>)
+  return (<p className="text-md ms-3 mt-0">{formatDateHeader(today)}</p>)
 }
