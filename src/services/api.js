@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const apiKey = process.env.VITE_CURRENCY_API_KEY;
-const baseUrl = process.env.VITE_CURRENCY_BASE_URL;
+const apiKey = import.meta.env.VITE_CURRENCY_API_KEY;
+const baseUrl = import.meta.env.VITE_CURRENCY_BASE_URL;
 let data;
 
 export async function fetchIndonesia() {
