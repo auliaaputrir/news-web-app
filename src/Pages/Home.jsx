@@ -60,6 +60,10 @@ export default function Indonesia() {
                         <TopNews.Body
                             headline={firstNews.headline?.main || 'No Title Available'}
                             href={firstNews.web_url}
+                            id={firstNews._id}
+                            handleSave={() => handleSave(firstNews)}
+                            isSaved={isSaved(firstNews._id)}
+
                         >
                             {firstNews.abstract || 'No Description Available'}
                         </TopNews.Body>
@@ -68,7 +72,7 @@ export default function Indonesia() {
             </div>
 
             {/* CardItem Section */}
-            <div className="mt-14 w-full grid grid-cols-3 gap-2">
+            <div className="mt-14 w-full grid gap-2 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 md:gap-6">
                 {news.slice(1).map((item) => ( // Start mapping from index 1
                     <CardItem key={item._id}>
                         <CardItem.Image

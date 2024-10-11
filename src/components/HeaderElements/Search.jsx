@@ -29,8 +29,8 @@ export default function Search() {
         <input
             type="text"
             id="Search"
-            placeholder="Search for..."
-            className="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
+            placeholder="Search for anything..."
+            className="placeholder:italic placeholder:text-slate-400 block bg-white w-60 border border-slate-300 rounded-md py-3 pl-4 pr-3 shadow-sm focus:outline-none focus:border-slate-500 focus:ring-slate-500 focus:ring-1 sm:text-sm"
             onChange={handleChange}
             onKeyDown={handleKeyDown} // Menambahkan event handler untuk key down
             value={input} // Menambahkan value untuk mengikat state

@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 import ContinueReading from "../Elements/Anchor/ContinueReading"
+import Button from "../Elements/Button"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark as solidBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons';
 
 export default function TopNews(props) {
     const { children } = props
     return (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-8">
+        <div className="grid grid-cols-1 gap-8  lg:grid-cols-2 lg:gap-8">
             {children}
         </div>
 
@@ -33,10 +37,10 @@ export function Image(props) {
 }
 
 export function Body(props) {
-    const { headline, children,href } = props
+    const { headline, children,href, id, handleSave, isSaved } = props
     return (
-        <div className="lg:py-24">
-            <div className="w-24 h-10 pt-2 pl-3 bg-red-600 text-white ">
+        <div className="lg:py-10">
+            <div className="w-24 h-10 pt-2 pl-3  mb-5 bg-red-600 text-white ">
                 <span className="font-bold">Top News</span>
 
             </div>
@@ -45,6 +49,19 @@ export function Body(props) {
                 {children}
             </p>
             <ContinueReading href={href}/>
+            <div className="absolute bottom-0 right-10 mr-4 mb-8">
+                <Button
+                     // Menggunakan handleSave yang dipass dari parent
+                     id={id}
+                     onClick={handleSave}
+                     
+                    className="bg-black text-white rounded-lg mr-4"
+                >
+                    <span>
+                    <FontAwesomeIcon icon={isSaved ? solidBookmark : regularBookmark} />
+                    </span>
+                </Button>
+            </div>
         </div>
     )
 }
