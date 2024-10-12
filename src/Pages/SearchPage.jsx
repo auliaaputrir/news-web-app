@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { fetchNews } from '../services/api';
-import CardItem from "../components/NewsElements/CardItem"; 
-import TopNews from "../components/NewsElements/TopNews";
-import useSaved from '../hooks/useSaved';
-import SectionTitle from '../components/NewsElements/SectionTitle'
+import CardItem from "../components/Fragments/CardItem";;
+import SectionTitle from '../components/Fragments/SectionTitle'
+import ButtonSave from "../components/Fragments/ButtonSave";
+
 
 export default function SearchNews() {
   const location = useLocation();
@@ -13,12 +13,12 @@ export default function SearchNews() {
   const [news, setNews] = useState([]); // State untuk menyimpan berita
   const [loading, setLoading] = useState(true); // State untuk loading
   const [error, setError] = useState(null); // State untuk menyimpan error
-  const { savedNews, isSaved, handleSave } = useSaved()
+
 
   useEffect(() => {
     // Jika tidak ada query
     if (!query) {
-      navigate('/error'); 
+      navigate('/error');
       return; // Keluar dari useEffect
     }
 
@@ -42,8 +42,8 @@ export default function SearchNews() {
   return (
     <div>
       <SectionTitle>Search: {query}</SectionTitle>
-      <div className="mt-14 w-full grid grid-cols-3 gap-2">
-        {news.map((item) => ( 
+      <div className="mt-14 w-full grid gap-2 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 md:gap-6">
+        {news.map((item) => (
           <CardItem key={item._id}>
             <CardItem.Image
               alt={`news-image-${item.headline?.main || 'default-headline'}`}
@@ -54,14 +54,15 @@ export default function SearchNews() {
               }
             />
             <CardItem.Body
-              key={item._id}
               headline={item.headline?.main || 'No Title Available'}
               href={item.web_url}
-              id={item._id}
-              handleSave={() => handleSave(item)} // Mengirimkan seluruh objek `item`
-              isSaved={isSaved(item._id)} // Mengirimkan status boolean
+              item={item}
             >
               {item.abstract || 'No Description Available'}
+              <div className="absolute bottom-0 right-0 mr-4 mb-8">
+
+                <ButtonSave news={item} />
+              </div>
             </CardItem.Body>
           </CardItem>
         ))}

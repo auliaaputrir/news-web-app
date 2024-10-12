@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import Header from '../components/HeaderElements/Header'
+import Header from '../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 

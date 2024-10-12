@@ -1,6 +1,6 @@
 export const loadState = () => {
     try {
-        const serializedState = localStorage.getItem('save');
+        const serializedState = localStorage.getItem('saved-news');
         if (serializedState === null) {
             return [];
         }
@@ -14,7 +14,7 @@ export const loadState = () => {
 export const saveState = (state) => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('save', serializedState);
+        localStorage.setItem('saved-news', serializedState);
     } catch (err) {
         console.error("Could not save state to localStorage:", err);
     }
