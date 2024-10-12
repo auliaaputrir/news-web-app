@@ -7,6 +7,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import SavedNewsPage from "../Pages/SavedNewsPage";
 import SearchPage from '../Pages/SearchPage'
 
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -29,7 +30,6 @@ const router = createBrowserRouter([
                 path: 'search',
                 element: <SearchPage/>
             },
-
         ]
     }
 ]);
