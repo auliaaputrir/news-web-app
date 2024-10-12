@@ -12,7 +12,7 @@ export function formatDateHeader(date) {
   const month = date.toLocaleString('en-US', { month: 'short' }); // Bulan singkat (Sep)
   const year = date.getFullYear(); // Mendapatkan tahun (2024)
 
-  return `${weekday}, ${day} ${month} ${year}`;
+  return `${weekday.substring(0, 3)}, ${day} ${month} ${year}`;
 }
 
 

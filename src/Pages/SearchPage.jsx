@@ -36,8 +36,8 @@ export default function SearchNews() {
     fetchData();
   }, [query, navigate]); // Menggunakan query dan navigate sebagai dependency
 
-  if (loading) return <p>Loading...</p>; // Menampilkan loading
-  if (error) return <p>Error: {error.message}</p>; // Menampilkan pesan error
+  if (loading) return <p className='text-center'>Loading...</p>; // Menampilkan loading
+  if (error) return <p className='text-center'>Error: {error.message}</p>; // Menampilkan pesan error
 
   return (
     <div>
