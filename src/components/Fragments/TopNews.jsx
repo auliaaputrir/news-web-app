@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import ContinueReading from "../Elements/Anchor"
+import Anchor from "../Elements/Anchor"
 
 export default function TopNews(props) {
     const { children } = props
@@ -33,7 +33,7 @@ export function Image(props) {
 }
 
 export function Body(props) {
-    const { headline, children,href, id, handleSave, isSaved } = props
+    const { headline, children,href} = props
     return (
         <div className="lg:py-10">
             <div className="w-24 h-10 pt-2 pl-3  mb-5 bg-red-600 text-white ">
@@ -41,13 +41,11 @@ export function Body(props) {
 
             </div>
             <h1 className="text-3xl font-bold sm:text-4xl">{headline}</h1>
-            <p className="mt-4 text-gray-600">
+            <div className="mt-4 text-gray-600">
                 {children}
-            </p>
-            <ContinueReading href={href}/>
-            <div className="absolute bottom-0 right-10 mr-4 mb-8">
-
             </div>
+            <Anchor href={href}>Continue Reading</Anchor>
+
         </div>
     )
 }

@@ -65,6 +65,10 @@ export default function Indonesia() {
 
                             >
                                 {firstNews.abstract || 'No Description Available'}
+                                <div className="absolute bottom-0 right-0 mr-10 mb-8">
+
+                                    <ButtonSave news={firstNews} />
+                                </div>
                             </TopNews.Body>
                         </TopNews>
                     )}

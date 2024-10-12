@@ -62,6 +62,10 @@ export default function Indonesia() {
                                 href={firstNews.web_url}
                             >
                                 {firstNews.abstracts || 'No Description Available'}
+                                <div className="absolute bottom-0 right-0 mr-10 mb-8">
+
+                                    <ButtonSave news={firstNews} />
+                                </div>
                             </TopNews.Body>
                         </TopNews>
                     )}
